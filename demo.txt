@@ -323,8 +323,6 @@ Task : Create a policy to deny s3.
 
 Task 2 : Create an IAM user, provide him "AdministratorAccess" and associate "task 1 policy" to this user, login and try to create a bucket.!!! 
 
-
-
 Task 3 : Create a Policy to allow S3FullACcess, but this should work from only one/your Network.
 ** You have to add an IP address condition.
 
@@ -367,18 +365,46 @@ Create a policy allow all s3 actions on all resources, Add a "region" condition.
 ==> Login as this user, Try to create bucket in "mumbai" it should allow. If you choose any other regions it should not allow.
 
 
+=================================================================================
 
 
-Classroom : 8 Am - 8 PM
+Inline policy : Alligned to one specific entity user/group/role.
 
-Online lab : 
-9AM - 12 PM
-2 PM - 4 PM
+Credentials report : This report contains user information i.e; last password used, pwd expirations, access keys information, MFA is enable info.. 
 
-NRI : 6PM - 8 PM IST
-
+How to track IAM user activities : 
+Cloudtrail : it logs all the activities happening on our aws environment. Its enabled by defaultly. It stores last 90 Days logs.
 
 
+Permissions boundary : Set maximum permissions a user can get. 
+
+
+AWS IAM users has 2 types of accesses. 
+--> Management console access : Username, Password and Sign-in IURL. Using web browser we can login and perform the required activities.
+--> programatic Access : We will get "AccessKey" and "Secret key", We can configure these in Command prompt / terminals and we can execute query to work on aws resources.
+
+
+
+To : avizway@gmail.com
+CC : phani@nareshit.com 
+
+
+
+AWS Online LAB Sessions From 9AM-1PM,  2PM to 4PM (Mon to Sat)
+Meeting Link: https://zoom.us/j/83939072968
+Password: 652247
+
+NRI Students@ 6PM to 8PM (Mon to Sat)
+Meeting Link: https://zoom.us/j/83939072968
+Password: 65224
+
+
+
+Telegram link : https://telegram.me/+gshcyS35grtmMTVl
+
+Slack Link : https://join.slack.com/t/awswithavinash/shared_invite/zt-29wlomw11-6b2v0vLiBoiKwkGhy1hhuw
+
+https://github.com/avizway1/jan2024
 
 
 
