@@ -166,8 +166,6 @@ http status codes :
 https://www.free-css.com/free-css-templates
 
 
-
-
 Task : Download a template from Internet. Deliver the webiste using s3 - static webiste feature.
 
 Task : Create Version enabled bucket and test "Delete marker" and multiple version objects.
@@ -175,11 +173,9 @@ Task : Create Version enabled bucket and test "Delete marker" and multiple versi
 Task : Configure life cycle management rule to transit data from S3Standard to "Delete" after 2 days. (personal account).
 
 
+==============================================================================================
 
-
-
-
-
+D: 08/01/24
 
 CRR / SRR : 
 --> Source bucket and destination bucket must be enabled with versioning. 
@@ -207,4 +203,134 @@ Task 2 :  Create another bucker in N Virginia region only.. configure same regio
 Task 3 : Create a Life CYcle management rule to transit current version objects from s3 standard to Delete after 1 Day.
 Transit previous version objects to Delete after 1 Day.
 
-===============================================================================
+
+
+===================================================================================================
+
+
+Requirement : I want an IAM user, who can perform everything on s3 platform. But i dont want to allow this user to "DeleteObject" from one specific s3 bucket.
+
+Requi: IAM user.. S3FullAccess, 
+
+
+Deny upload object operation on a particular bucket. : Bucket policy
+
+Bucket ARN : arn:aws:s3:::avinash.bucket
+IAM User ARN / Principal : arn:aws:iam::501170964283:user/s3user
+Effect : Allow / Deny : Deny
+Action / Operation : PutObject, DeleteBucket
+
+
+Object level / Inside bucket possible operation : arn:aws:s3:::avinash.bucket/*
+Bucket level : arn:aws:s3:::avinash.bucket
+if you dont know bucket level/object level ; give both
+(arn:aws:s3:::BUCKETNAME,arn:aws:s3:::BUCKETNAME/*)
+
+
+
+
+
+arn:aws:s3:::0105.avinash  Bucket : delete bucket / enable verisoni / enable policy/ acl
+arn:aws:s3:::0105.avinash/*  Object : delete object/ uplaod obj/. over obj
+
+arn:aws:s3:::0105.avinash,arn:aws:s3:::0105.avinash/*
+
+--------------------
+
+Task : Create an IAM user with "S3FullAccess". 
+We need to restrict/DENY this user to perform "DeleteObject" opertion from a specific bucket (bucketname)
+
+
+Task 2 : create a bucket policy, that allow "one spcific IAM USer", to perform anything on this bucket. Remaining all users should not able to perform anything on this bucket.
+--> Refer the policy we have at bottom of this doc
+
+
+Task 3 : Create a bucket, Allocate this bucket to only one specific user. Allow him to perform "GetObject", "PutObject" and "DeleteObject". This User should not able to view all the bucket we have in s3 platform.
+--> Only with the help of a bucket URL, this guy should able to view.   --> IAM POLICY
+
+https://repost.aws/knowledge-center/s3-console-access-certain-bucket
+
+
+Task 4 : Make a bucket public for eveyone using "BUCKET POLICY".
+--> Refer the policy we have at bottom of this doc
+
+
+=================================================================================
+
+Task 2 Policy example : 
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Deny",
+            "Principal": {
+                "AWS": "*"
+            },
+            "Action": "s3:*",
+            "Resource": [
+                "arn:aws:s3:::bucketname",
+                "arn:aws:s3:::bucketname/*"
+            ],
+            "Condition": {
+                "StringNotLike": {
+                    "aws:PrincipalArn": [
+                        "arn:aws:iam::1212121212:user/11111111"
+                    ]
+                }
+            }
+        }
+    ]
+}
+
+
+------------------------------
+Task 4 : 
+
+{
+    "Version": "2012-10-17",
+    "Id": "Policy1691635080227",
+    "Statement": [
+        {
+            "Sid": "Stmt1691635078528",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::policy.test.s3user/*"
+        }
+    ]
+}
+
+-------------------------
+
+What is Presign URL :  Short lived urls. 
+--> Without making bucket/object public, we can share an s3 object with presign url, this URL works only for sometime.
+
+========================================================================
+
+
+Encryption : 
+
+
+
+Event notifications : 
+
+--> SNS : Simple Notification Service : 1000 EMAILs Free Tier eligibility
+--> SQS : Simple Queue Service
+--> Lambda 
+
+--> Make sure you edit the SNS topic's "Access Policy to everyone".
+
+------------
+
+Object Lock : 
+
+--> Versioning must be enabled.
+
+Permanently allows objects in this bucket to be locked. Additional Object Lock configuration is required in bucket details after bucket creation to protect objects in this bucket from being deleted or overwritten.
+
+Governance : Users with specific IAM permissions can overwrite or delete protected object versions during the retention period.
+
+Compliance : No users can overwrite or delete protected object versions during the retention period.
+
+
