@@ -401,6 +401,132 @@ SSE-KMS-C - Customer Provided : Customer need to create encyption key, Customer 
 https://www.youtube.com/watch?v=r17Z75TqjU0&t=548s
 
 
+================================================================================================
+
+Event notifications : 
+
+--> SNS : Simple Notification Service : 1000 EMAILs Free Tier eligibility
+--> SQS : Simple Queue Service
+--> Lambda 
+
+--> Make sure you edit the SNS topic's "Access Policy to everyone".
+
+
+------------
+
+Object Lock : 
+
+--> Versioning must be enabled.
+
+Permanently allows objects in this bucket to be locked. Additional Object Lock configuration is required in bucket details after bucket creation to protect objects in this bucket from being deleted or overwritten.
+
+Governance : Users with specific IAM permissions can overwrite or delete protected object versions during the retention period.
+
+Compliance : No users can overwrite or delete protected object versions during the retention period.
+
+_____
+
+Performance : 
+3500 PUT Object per second per prefix
+5500 GET Object per second per prefix
+
+--> maintain/Increase the uniqueness for the object names.
+--> Use more prefixes (folders)
+
+
+My Req : i want 10,000 Uploads / Sec.. 
+
+Bucket : 5500 uploads/sec.. 
+--> folder1 --> 5500
+--> folder2 --> 5500
+--> folder3 --> 5500
+
+-----
+
+Monitoring S3 Bucket : 
+
+Free Metrics:
+Total number of objects
+Total bucket size
+
+We do have an option to enable paid metrics.
+
+-----
+
+Storage Class Analysis : Analyze storage access patterns to help you decide when to transition objects to the appropriate storage class.
+
+_______
+
+Transfer acceleration : Uses Edge locations for data transfer. (COST US)
+S3 Transfer Acceleration is not supported for buckets with periods (.) in their names
+
+https://s3-accelerate-speedtest.s3-accelerate.amazonaws.com/en/accelerate-speed-comparsion.html?region=ap-south-1&origBucketName=2505-avinash
+
+
+========================================================================
+
+Server access logging : enable logging on bucket.
+
+https://docs.aws.amazon.com/AmazonS3/latest/userguide/LogFormat.html
+
+Cloudtrail : Data events : It allow us to log all s3 activities (Current buckets and future buckets).
+
+----
+
+Requester pays : the requester pays for requests and data transfer costs, and anonymous access to this bucket is disabled. Instead of bucket owner data requester need to pay for the data transfer & request.
+--> Anonomus access disables once we enable this feature.
+
+---
+
+Cross-origin resource sharing (CORS)
+The CORS configuration, written in JSON, defines a way for client web applications that are loaded in one domain to interact with resources in a different domain.
+
+CORS : https://www.youtube.com/watch?v=YrfDLrSVxQ8&t=4s
+
+________________
+
+If we have larger file to uploade to s3 paltform, We can initiate the "Multi Part Upload". 
+
+How to Perform multiPart upload to S3 : 
+https://www.youtube.com/watch?v=ZJaNTLKz334
+
+
+---
+Pricing : https://calculator.aws/
+Free Tier : https://aws.amazon.com/free
+
+
+========================================================================
+
+For Put of new object, "read after write consistency". (If upload success, we can start accessing the data without any delay)
+Eventual consistenacy For overwrite an object / delete an object. (After we delete the object, Some of the request may deliver the content (in some milli seconds)) (You have uploaded object with latest data and trying to access, you have chances to get previous data object) 
+_________________
+
+AWS Snow Family : 
+--> AWS snowcone : 8 TB
+--> AWS Snowball : 100 TB
+--> AWS Snowball edge : 40 - 80 TB
+--> AWS Snow mobile : PB scale container
+
+1 pb data, 1 gbps internet line with 80%.. 20-25 yrs
+
+___
+
+AWS Direct Connect : Dedicated connection between on-premise/local environment to AWS environment. 3-4 weeks time required. We need to choose the required bandwidth. 
+--> Airtel, jio, sify
+
+Site-to-site VPN : Happens over the internet.
+
+-----------------------------------------------
+
+Storage Gateway:
+
+Amazon S3 File Gateway : Store and access objects in Amazon S3 from NFS or SMB file data with local caching.
+--> Your data is in s3 bucket only, from your local network, whatever the data you access very frequently, that will be stored in your storage gateway that is running in same network/on-prem.
+
+Volume Gateway : Store and access iSCSI block storage volumes in Amazon S3.
+
+Tape Gateway : Store virtual tapes in Amazon S3 using iSCSI-VTL, and store archived tapes in Amazon S3 Glacier Flexible Retrieval or Amazon S3 Glacier Deep Archive.
 
 
 
