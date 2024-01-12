@@ -442,6 +442,7 @@ Bucket : 5500 uploads/sec..
 --> folder3 --> 5500
 
 -----
+Cloudwatch : Monitoring
 
 Monitoring S3 Bucket : 
 
@@ -483,7 +484,9 @@ The CORS configuration, written in JSON, defines a way for client web applicatio
 
 CORS : https://www.youtube.com/watch?v=YrfDLrSVxQ8&t=4s
 
-________________
+==================================================================
+
+D: 11/01/2024
 
 If we have larger file to uploade to s3 paltform, We can initiate the "Multi Part Upload". 
 
@@ -497,6 +500,8 @@ Free Tier : https://aws.amazon.com/free
 
 
 ========================================================================
+
+S3 platform Consistency mechanism: 
 
 For Put of new object, "read after write consistency". (If upload success, we can start accessing the data without any delay)
 Eventual consistenacy For overwrite an object / delete an object. (After we delete the object, Some of the request may deliver the content (in some milli seconds)) (You have uploaded object with latest data and trying to access, you have chances to get previous data object) 
@@ -517,53 +522,21 @@ AWS Direct Connect : Dedicated connection between on-premise/local environment t
 
 Site-to-site VPN : Happens over the internet.
 
------------------------------------------------
 
-Storage Gateway:
+=================================================================================
 
-Amazon S3 File Gateway : Store and access objects in Amazon S3 from NFS or SMB file data with local caching.
---> Your data is in s3 bucket only, from your local network, whatever the data you access very frequently, that will be stored in your storage gateway that is running in same network/on-prem.
-
-Volume Gateway : Store and access iSCSI block storage volumes in Amazon S3.
-
-Tape Gateway : Store virtual tapes in Amazon S3 using iSCSI-VTL, and store archived tapes in Amazon S3 Glacier Flexible Retrieval or Amazon S3 Glacier Deep Archive.
-
-
-
-
+Certification Topics : 
+--> Storage classes
+--> Life Cycle management rule
+--> replication
+--> encryption
+--> versioning
+--> Data Migration (Snow Family)
+--> Data consisntency
+--> Data performance
 
 
 
 
-
-https://telegram.me/+gshcyS35grtmMTVl
-
-
-
-
-
-
-
-
-
-Event notifications : 
-
---> SNS : Simple Notification Service : 1000 EMAILs Free Tier eligibility
---> SQS : Simple Queue Service
---> Lambda 
-
---> Make sure you edit the SNS topic's "Access Policy to everyone".
-
-------------
-
-Object Lock : 
-
---> Versioning must be enabled.
-
-Permanently allows objects in this bucket to be locked. Additional Object Lock configuration is required in bucket details after bucket creation to protect objects in this bucket from being deleted or overwritten.
-
-Governance : Users with specific IAM permissions can overwrite or delete protected object versions during the retention period.
-
-Compliance : No users can overwrite or delete protected object versions during the retention period.
-
-
+Task : Configure any of the 3rd part application and access s3 bucket.
+S3 browser, CyberDuck, WinSCP, Cloudberry explorer
