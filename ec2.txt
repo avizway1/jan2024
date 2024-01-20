@@ -229,6 +229,89 @@ Linux Instances : Default username : ec2-user  / redhat / ubuntu
 Task : Launch Linux ec2 instance and get connect to it.
 
 
+===========================================================================
+
+D: 20/01/2024
+
+whoami		--> tells us as what user we are working.
+sudo		--> allow user to execute the command with root level permissions
+sudo su		--> Switch to root user
+exit		--> Exit from root user to ec2-user
+clear		--> Clears the screen
+
+ls			--> List the files/folders
+ls -a		--> List all including hidden files
+pwd			--> Print working directory
+mkdir		--> Create a Directory/Folder
+touch 		--> o bytes file/ plain file
+cd			--> Change directory
+cd ..		--> To come one step back from current path.
+rmdir		--> remove directory, if it is empty.
+rm -rf foldername/	--> Delete a directory that contains files
+
+copy and paste :  cp
+cut and paste  :  mv
+
+to rename a file we use "mv" command :  mv oldfilename newfilename
+
+_________________________
+
+vim / vi / nano
+
+VIM Editor : 
+
+vim filename	--> Open this file in VIM editor
+
+Press I			--> INSERT Mode
+Press ESC		--> ReadOnly Mode
+:wq				--> Write and Quit (Write changes to file and quit the editor)
+:q!				--> Quit the Editor without writing the changes
+
+
+
+
+Coupon : JAN2024
+
+https://www.udemy.com/course/linuxwithavinash/?couponCode=JAN2024
+
+
+https://t.me/+pQ5_AauyOTAxNGRh
+
+
+
+
+
+____________________________________________________________________________________
+
+Req: Make this linux Instance as Web Server (Apache).
+
+rpm : Redhat package manager
+yum : Yellowdog Update manager
+
+yum install httpd -y
+service httpd status			--> httpd webserver service status
+service httpd start/stop/restart
+chkconfig httpd on				--> Makes httpd as logon service.
+
+path : /var/www/html/
+
+cd /var/www/html/
+
+Tool to Move the files to amazon linux ec2 instance : WinSCP
+
+--------
+
+EIP : Elastic IP Address : If you need a dedicated/fixed IP address for your ec2 instance, you can generate an EIP and associate it.
+-> EIP wont change even after performing STOP/START operation on ec2 instance.
+NO FREE TIER ELIGIBILITY. IT WILL COST YOU.
+
+
+Task 1 : Launch an amazon linux 2, make it as webserver and deliver custom web content.
+
+Task 2 : Launch an Amazon Linux 2, install nginx and deliver custom web page.
+
+===========================================================================
+
 
 
 
