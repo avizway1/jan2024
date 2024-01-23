@@ -326,7 +326,185 @@ Task 2 : Once task 1, completed. Change apache configuration port from 80 to 888
 
 Task 3 : Launch an Amazon Linux 2, install nginx and deliver custom web page.
 
-
 Test EIP in Sandbox environment.
+
+===========================================================================
+
+D: 23/01/2024
+
+How to deal with Volumes
+
+root volume : COntains OS : gp2,gp3, io1, io2 and magnetic
+
+IOPS : Input and output Operations per second
+
+GP2, Gp3 : general Purpose :SSD: Suitable for most of the common workloads.
+io1, io2 : Provisional IOPS :SSD: Gives best perf among all storage options. 
+sc1 ($), st1($$) : HDD : wont support boot/root volume : Best throughput values. : log processing/bigdata
+magnetic : standard : We dont use this.. : Cheapest storage 
+
+Windows : FAT, NTFS and ReFS
+Linux : ext3, ext4, xfs
+
+EBS : Elastic Bloc Storage : Block based storage : Designed to run OS.. 
+
+root : SSD and magnetic is supported.
+Addl volume : SSD, HDD and magnetic
+
+Step 4 : CHoose Storage
+
+--> EBS : Elastic Block Storage
+SSD / HDD / Magnetic
+
+
+root Volume : COntains OS : gp2, gp3, io1, io2 and standard/magnetic
+Additional volume : all root supported + st1, sc1
+
+General Purpose SSD : (gp2 / gp3) : Low latency interactive applications, Dev and test environment..!!
+Min : 1 GiB, Max: 16 TiB... Max IOPS: 16,000 IOPS
+gp2 --> works 1 : 3 ration (1 gb volume = 3 iops), with min of 100..
+
+for gp3, we have an advantage, we can mention/choose required IOPS count.
+
+__
+
+Provisioned iops : (io1 & io2) : workload that requires Specific IOPS count.. or if we need more than 16,000 iops for our ec2 instance.. I/O Intensive database workloads..
+Min : 4 GiB, Max: 16 TiB... Max IOPS: 64,000 IOPS
+--> It provided highest performance among all. 
+
+io2 Block Express volume : Min : 4 GiB, Max: 64 TiB...
+Supports 256,000 IOPS.. 
+__
+
+Magnetic : Standard : Less freq accessed data, Low cost storage solutions.. 
+Min : 1 GiB, Max: 1 TiB...
+__
+
+Throughput optimized HDD : st1 : Bigdata, Data warehousing, log processing.. 
+Size : Min 125 GiB - 16 TiB.. IOPS : 500.. Throughput : 500 MB/S..
+
+Cold HDD : sc1 : THroughput orientes storages, but with Less Frequently accessed.. Lower cost than st1.. 
+Size : Min 125 GiB - 16 TiB.. IOPS : 250.. Throughput : 250 MB/S..
+
+
+Free Tier : 30 gb Gp2 and standard storage.. 
+
+--> 20% of volume size (or) 5 gb.. WHichever is highest
+
+** Need to perform OS level operations to make additional volumes available.
+--> Disk Management --> diskmgmt.msc --> choose volume --> make it online --> Initilize disk --> SImple volume --> NTFS/FAT --> Create
+
+
+Windows : FAT, FAT32, NTFS, ReFS
+Linux : ext3, ext4, xfs
+
+
+grab the name of new volume : /dev/xvdb
+
+lsblk		--> List block based devices
+df -Th		--> List the available volumes
+
+/dev/xvda1	--> root volume (/)
+/dev/xvdf	--> new Volume name 
+
+In windows OS, we mount new volumes to drive letters.. But in Linux OS, We mount volumes to Directory. 
+
+mkdir newvolume
+
+file -s /dev/xvdf  	--> If this command returns with "data", no file system.
+			--> If this returns ext3/xfs filesystem.. We have a file system.
+
+
+mkfs -t xfs /dev/xvdf		--> Make file system and write it to Additonal volume
+
+mount /dev/xvdf newvolume/	--> mount addl volume to directory
+
+
+=================
+
+
+--> Above mount is temp mount only.. it won't available after the instance reboot.
+--> To make this volume perm mount to the directory, Add entry in "/etc/fstab" file.
+--> Get the entry information from "/etc/mtab" file. 
+
+--> cat /etc/mtab		--> Grab the entry related to newly added addl volume
+
+/dev/xvdb /home/ec2-user/newvolume xfs rw,relatime,attr2,inode64,noquota 0 0
+
+--> vim /etc/fstab.. Write the above entry, save and quit the editor. (Do not edit the existing entry).
+
+mount -all
+__________
+--> Increase the volume size the "Cosole" first, then execute the below command..!!
+
+We can use "xfsprogs" to increase existing volume size. 
+
+yum install xfsprogs
+
+--> xfs_growfs -d /volume-Mountpoint
+--> xfs_growfs -d /home/ec2-user/newvolume
+
+--> Increasing volume is possible, But redusing volume is not possible.
+
+===========================================================================
+
+
+Task : Launch an ec2 instance, Add a 2 gb volume, associate it with ec2 instance.. Make 2 gb volume available at os level and write some data into it. (Reboot and verify)
+df -Th after reboot, also should show 2gb volume.
+
+Task 2 : Increase the size of 2gb volume to 4 gb and verify with df -Th. (personal Account)
+
+Task 3 : Launch another ec2 instance in same AZ as existing ec2 instance.. Detach the volume from instance 1 and attach it to newly launched ec2 instance. You should be able to see all the data.
+(personal Account)
+
+
+
+=================================================
+
+New volume name : xvdf	Full Path : /dev/xvdf
+
+file -s /dev/xvdf
+If output is ; Data, No file system
+If output : XFS/EXT3.. There is a file system 
+
+Command to write a file system :  mkfs -t xfs /dev/xvdf
+
+mkdir newvol
+
+mount /dev/xvdf /newvol
+
+
+lsblk
+df -Th
+file -s /dev/xvdf
+mkfs -t xfs /dev/xvdf
+mkdir newvol
+mount /dev/xvdf newvol/
+
+File to add an entry, for perm mount : /etc/fstab
+Get the entry information from : /etc/mtab
+
+cat /etc/mtab ==> You will see latest entry related to the mount we performed. Get that emntry and write it to "/etc/fstab" file.
+
+
+/dev/xvdf /home/ec2-user/newvol xfs rw,relatime,attr2,inode64,logbufs=8,logbsize=32k,noquota 0 0
+
+vim /etc/fstab  ==> And add entry
+
+=====
+
+To extend existing volume.
+
+step 1 : IN AWS Console, Increase the volume size
+Step 2 : Run xfs_growfs -d "mountpoint"
+
+ex: xfs_growfs -d "/home/ec2-user/newvol"
+
+==========================================================================================
+
+
+
+
+
 
 
