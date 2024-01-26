@@ -567,6 +567,7 @@ Get the 2gb volume data from instance 1a to newly launch 1b ec2 instance.. Make 
 
 ============================================================================================
 
+D: 25/01/2024
 
 Scenario : 10 ec2 instances.. AV, MS Office, Custom WP, CUstom OS users, Applications, IIS.. 
 
@@ -600,17 +601,11 @@ Task 3 : How to setup password authentication to ec2-user user instead of keypai
 https://comtechies.com/password-authentication-aws-ec2.html
 
 
-Task 4 : How to create a new user in Amazon Linux 2, how can we provide ssh access to instance for newly created user using keypair. 
+Task 4 : How to create a new user in Amazon Linux 2, how can we provide ssh access to instance for newly created user using keypair.
 
+==========================================================================================
 
-
-
-
-
-
-
-
-==========
+D: 26/01/2024
 
 --> Cloud watch : Service to monitor all AWS resources i.e; s3, ec2, rds.. 
 --> We can monitor CPU, Disk and network for ec2 instance.
@@ -625,6 +620,87 @@ Task 4 : How to create a new user in Amazon Linux 2, how can we provide ssh acce
 Vertical Scaling : Upgrading / Adding more resources to same Instance. i.e; from t2.micro to t3.medium
 
 To perform vertical scaling in AWS, First stop the ec2 instance, then only we can upgrqade it.
+
+
+** Dont use same Security group for your ec2 instance and Load balancer.
+
+#!/bin/bash
+yum install httpd -y
+service httpd start
+chkconfig httpd on
+echo "<h1>This is my first webserver</h1>" > /var/www/html/index.html
+
+
+#!/bin/bash
+yum install httpd -y
+service httpd start
+chkconfig httpd on
+echo "<h1>This is my Second webserver</h1>" > /var/www/html/index.html
+
+
+Vertical Scaling : Upgrading same instance resources.. t2.micro --> c5.2xlarge
+
+
+Task : Launch an ec2 instance, while launching pass userdata and deliver webpage.
+
+Task 2 : Create an alarm, when Instance CPU usage is less than 30% for 10 minutes, Stop the instance and get an alart to your email.
+
+Task 3 (optional) : Install stress package on an ec2 instance, run this stress command for 10 min.. 
+Now, create an Alarm to monitor your ec2 instance cpu, when cpu usage is 80% more for 5 min, Reboot your ec2 instance and get an alert to your email.
+
+
+
+____________________________________________________________________________________
+
+
+Vertical Scaling : Upgrading same instance resources.. t2.micro --> c5.2xlarge
+Horizantal Scaling : Distribute application load to multiple ec2 instances.. 
+
+Classic ELB : Layer 4/7 LB.. : Outdated.. : http, https, tcp, udp.. 
+Application ELB : Layer 7 ELB.. : http and https
+Network ELB : Layer 4 ELB.. : TCP, UDP, TLS 
+Gateway ELB : GENEVE / 3rd party security virtual applicances.. 
+
+**Please select at least two Subnets in different Availability Zones to provide higher availability for your load balancer.
+
+
+For ELBs, We will get DNS Endpoint..
+Roundrobin algorithm.. 
+
+If you want to view IP address of an ELB, 
+--> Navigate to "Network interfaces" and observe, You can get IP of ELB.
+--> nslookup "ELB-DNS-NAME"
+___________________________________________________
+
+Target Group : Each target group is used to route requests to one or more registered targets. When you create each listener rule, you specify a target group and conditions. When a rule condition is met, traffic is forwarded to the corresponding target group.
+
+Application ELB : http and https
+
+Application Load balancing algorithm : 
+--> Round robin
+--> Least outstanding requests
+
+--> We cannot assign a dedicated IP address for our Application ELB.
+
+Network ELB : TCP.. 
+--> Flow Hash algorithm.
+--> We CAN assign a dedicated IP address for our network ELB.
+
+Application LB Supports path based routing, also supports Microservices.
+
+millions req/sec : NLB
+
+ELB Access Logs : Logging on ELB. Destination is s3.
+___________________________________________________________________
+
+Free Tier : 750 hrs/month
+
+-----------------------
+
+Task : Create alb, and deliver webpapes on port 80, 8888, 8080. 
+
+what is telnet and how to use telnet, test it with an ec2 instance on port 22.
+
 
 
 
