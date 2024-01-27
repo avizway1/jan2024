@@ -607,7 +607,7 @@ Task 4 : How to create a new user in Amazon Linux 2, how can we provide ssh acce
 
 D: 26/01/2024
 
---> Cloud watch : Service to monitor all AWS resources i.e; s3, ec2, rds.. 
+--> CloudWatch : Service to monitor all AWS resources i.e; s3, ec2, rds.. 
 --> We can monitor CPU, Disk and network for ec2 instance.
 ** With Default metrics, we cannot monitor MEMORY Utilisation. 
 --> We can install an CloudWatch agenet and monitor Memory usage aswell. 
@@ -621,8 +621,6 @@ Vertical Scaling : Upgrading / Adding more resources to same Instance. i.e; from
 
 To perform vertical scaling in AWS, First stop the ec2 instance, then only we can upgrqade it.
 
-
-** Dont use same Security group for your ec2 instance and Load balancer.
 
 #!/bin/bash
 yum install httpd -y
@@ -664,6 +662,9 @@ Gateway ELB : GENEVE / 3rd party security virtual applicances..
 **Please select at least two Subnets in different Availability Zones to provide higher availability for your load balancer.
 
 
+** Dont use same Security group for your ec2 instance and Load balancer.
+
+
 For ELBs, We will get DNS Endpoint..
 Roundrobin algorithm.. 
 
@@ -694,15 +695,20 @@ ELB Access Logs : Logging on ELB. Destination is s3.
 ___________________________________________________________________
 
 Free Tier : 750 hrs/month
-
 -----------------------
 
-Task : Create alb, and deliver webpapes on port 80, 8888, 8080. 
 
-what is telnet and how to use telnet, test it with an ec2 instance on port 22.
+Task : Create an ALB, and deliver webpage on One TG / Port :80. 
+Test Stickyness.
+
+Task 2 : on existing LB, Add listeners on 8080, 8888. 
+
+Task 3 : what is Telnet and how to use telnet, test it with an ec2 instance on port 22.
 
 
 
 
 
+http://myalb-1649207360.ap-south-1.elb.amazonaws.com:80
+http://myalb-1649207360.ap-south-1.elb.amazonaws.com:787
 
