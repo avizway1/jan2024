@@ -704,7 +704,6 @@ Task 3 : what is Telnet and how to use telnet, test it with an ec2 instance on p
 
 ============================================================================================
 
-
 ASG : Auto scaling group.
 
 1. Create a GoldenAMI
@@ -761,8 +760,6 @@ ________
 7 : Configure Versions for Launch Tempplate. 
 
 
-
-
 ========================================================================
 
 Task : Configure pipeline mechanism between ec2 instances and elb.
@@ -771,8 +768,12 @@ Task : Configure pipeline mechanism between ec2 instances and elb.
 --> When we give direct instance IP, it should not deliver any webpage.
 --> When we give elb dns name, this should work.
 
-
 Task 2 : Create a launch template with t2.micro
 Create an ASG, Adjust Desired capacity manually and observe ec2 creation and terminations.
+
+Task 3 : Create an ASG and try Simple Scaling, Step scaling with given script.
+
+
+
 
 
