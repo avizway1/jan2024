@@ -842,3 +842,60 @@ c1/c2 : Client id
 
 P-WI-WT-IN
 P-WI-WT-C1-03
+
+============================================================================================
+
+D: 01/02/24
+Eventbridge
+
+--> Event Driven process
+--> Scheduled process
+--> Trigger both
+
+0 18 ? * MON-FRI *
+
+ Event Bridge : 
+
+{"version":"0","id":"1e2c141c-88ec-1a01-0df1-08b210311a1d","detail-type":"EC2 Instance State-change Notification","source":"aws.ec2","account":"501170964283","time":"2024-02-01T03:56:00Z","region":"ap-south-1","resources":["arn:aws:ec2:ap-south-1:501170964283:instance/i-0486cac9d3f4fd63a"],"detail":{"instance-id":"i-0486cac9d3f4fd63a","state":"stopped"}}
+
+ Sample Event : 
+
+ INPUT PATH:
+
+ {"instance-id":"$.detail.instance-id", "state":"$.detail.state", "time":"$.time", "region":"$.region", "account":"$.account"}
+
+ INPUT TEMPLATE: 
+
+ "At <time>, Status of your EC2 instance <instance-id> in the AWS Region <region> has changed to <state>."
+ 
+
+https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html
+ https://docs.aws.amazon.com/eventbridge/latest/userguide/eb-create-rule-schedule.html#eb-cron-expressions
+
+
+Task 1 : Configure Eventbridge to stop an ec2 instance at a particular time using Crontab. (9:15 Am)
+
+Task 2 : Configure to stop an ec2 instance after 5 minutes, trigger an email with custom email format.
+
+Task 3 : Configure to get an alert when someone deleted an s3 bucket.
+** You have to create a data trail. In sandbox you can try this. 
+________________________
+
+Instance store volumes : We don't use this in real environments.   (NO FREE TIER ELIGIBILTY)
+	--> Also called as Ephemeral storages (Temporary storage).
+	--> We cannot STOP/Start the instance.
+	--> Storage will be delivered from underlying host/physical resources.
+	--> If required, we can reboot. We don't loss any data.
+	--> If underlying h/w failure happens, we'll loss all the data.
+
+________________________
+
+Instance Isolation : https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjr993FsAyS65uL4QPbGu8n_JcB6Fwq6jDylWglIapsQQjHfbcbir83OT-I-_a-nhvvo8&usqp=CAU
+
+Dedicated and Shared tenancy :
+--> Shared tenancy : underlying hardware shared with multiple customers.
+--> Dedicated tenancy:
+	--> Dedicated instance : Dedicated instance provided by aws. No control on backend process.
+	--> Dedicated host : We can apply licenses at underlying physical resources. Also, we can launch multiple instances on a dedicated host.
+
+
