@@ -846,6 +846,7 @@ P-WI-WT-C1-03
 ============================================================================================
 
 D: 01/02/24
+
 Eventbridge
 
 --> Event Driven process
@@ -854,7 +855,7 @@ Eventbridge
 
 0 18 ? * MON-FRI *
 
- Event Bridge : 
+Event Bridge : 
 
 {"version":"0","id":"1e2c141c-88ec-1a01-0df1-08b210311a1d","detail-type":"EC2 Instance State-change Notification","source":"aws.ec2","account":"501170964283","time":"2024-02-01T03:56:00Z","region":"ap-south-1","resources":["arn:aws:ec2:ap-south-1:501170964283:instance/i-0486cac9d3f4fd63a"],"detail":{"instance-id":"i-0486cac9d3f4fd63a","state":"stopped"}}
 
@@ -899,3 +900,73 @@ Dedicated and Shared tenancy :
 	--> Dedicated host : We can apply licenses at underlying physical resources. Also, we can launch multiple instances on a dedicated host.
 
 
+==========================================================================================
+
+D: 02/02/24
+
+AWS CLI : 
+
+IAM User : programatic Access : AccesskeyID and SecretAccesskey : AWS CLI.. 3rd, cdk/sdk
+
+https://aws.amazon.com/cli
+
+aws --version			--> Tells us what cli version is installed.
+
+configure the aws cli: aws configure
+
+aws servicename commands
+
+aws s3 ls			--> List all the s3 buckets
+aws s3 ls s3://avinash.bucket	--> list objects from the s3 bucket
+aws s3 ls avinash.bucket
+
+aws s3 cp/sync sourcepath destinationpath
+
+aws s3 mb s3://avinash.bucket.1 --region ap-south-1
+
+aws s3 cp s3://avinash.bucket s3://avinash.bucket.1 --recursive
+
+aws s3 sync s3://avinash.bucket s3://avinash.bucket.1
+
+presign
+
+aws s3 presign s3://bucketname/objectname --expire 60
+
+aws s3 presign s3://avinash.bucket.1/s3.txt --expire 30
+
+___
+
+https://docs.aws.amazon.com/cli/latest/reference/
+
+__
+
+https://awsclibuilder.com/home
+
+___
+
+--profile : We can access multiple AWS accounts from cli using profile option.
+
+Credentials path in windows : C:/users/yourusername/.aws/ Enable Hidden directory view, 
+
+____________________________
+
+
+Task : Launch an ec2 instance using CLI.  (ami id, instance-type, subnet-id, security group id, keypair, count)
+
+Task 2 : Stop that ec2 instance using CLI comamnds.
+
+Task 3 : Start the same ec2 instance using cli.
+
+Task 4 : Launch an ec2 instance and Configure a role to access s3 data. (dont configure accesskey/secretkey.. use roles)
+
+Task 5 : Upload a webtemplate to an s3 bucket.. while launching the instance, make your instance as webserver then copy all the webcontent from s3 bucket to web content path (/var/www/html/). Perform using "userdata".
+
+#!/bin/bash
+yum install httpd -y
+service httpd start
+chkconfig httpd on
+copy data from s3 to ec2		(--recursive)
+
+Task 6 (Optional.. For Exp candidates mandatory) :  Create an IAM user in Account 1.. Allow this user to switch to "Account 2".. When he switch to account 2, Allow him to perform only "S3FullAccess".
+
+Refer : https://www.youtube.com/watch?v=sZiiB4yF0VY
