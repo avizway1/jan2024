@@ -893,13 +893,6 @@ ________________________
 
 Instance Isolation : https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjr993FsAyS65uL4QPbGu8n_JcB6Fwq6jDylWglIapsQQjHfbcbir83OT-I-_a-nhvvo8&usqp=CAU
 
-Dedicated and Shared tenancy :
---> Shared tenancy : underlying hardware shared with multiple customers.
---> Dedicated tenancy:
-	--> Dedicated instance : Dedicated instance provided by aws. No control on backend process.
-	--> Dedicated host : We can apply licenses at underlying physical resources. Also, we can launch multiple instances on a dedicated host.
-
-
 ==========================================================================================
 
 D: 02/02/24
@@ -978,13 +971,12 @@ Task 6 (Optional.. For Exp candidates mandatory) :  Create an IAM user in Accoun
 Refer : https://www.youtube.com/watch?v=sZiiB4yF0VY
 
 
-
-
 =======================================================================================
 
 D: 03/02/2024
 
-IN SANDBOX: Kindly note that during EC2 IAM role creation you need to choose only "AmazonS3FullAccess" and "AmazonSSMManagedInstanceCore". "AmazonSSMManagedInstanceCore" policy will be used for connecting ec2 instances via session manager.
+IN SANDBOX: Kindly note that during EC2 IAM role creation you need to choose only "AmazonS3FullAccess" and "AmazonSSMManagedInstanceCore". 
+"AmazonSSMManagedInstanceCore" policy will be used for connecting ec2 instances via session manager.
 
 
 Systems Manager run command :
@@ -1006,19 +998,64 @@ tzutil /s "India Standard Time"
 
 Task : Install tree package in linux instances without logging into.
 
-______________________________
+================================================================================================
+
+D: 05/02/24
 
 ElasticBeanstalk : It provides preconfigured platforms.
 --> Python, java, go, ruby, php, .net
 --> We can deploy/upload our code to this platform. 
 --> AWS Creates ELB, ASG automatically for our instances.
---> Less customisations at OS level, We cannot deliver multiple applications. 
+--> Less customisations at OS level, We cannot deliver multiple applications.
 
 -------------
 
-Instance Stop protection
-Instance Termination protection
+Instance Stop protection : protect instance from accidental stops.
+Instance Termination protection : protect instance from accidental Termination.
+Shutdown behaviour : If we initiate a shutdown operation from/at OS, What should happend to our ec2 instance.
+	--> Stop
+	--> Terminate.
 
 
 ENI : Elastic network Interface : Additional NIC card for ec2 instance
-Metadata
+
+
+Metadata : metadata means, data about the data. 
+We are using ec2 instance to deliver some data/webpage. We do have some info about the ec2 instance.. 
+By using metadata url, we can get info about the ec2 instance.
+
+curl http://169.254.169.254/latest/meta-data/metrics/vhostmd
+
+ami-id
+ami-launch-index
+ami-manifest-path
+block-device-mapping/
+events/
+hostname
+identity-credentials/
+instance-action
+instance-id
+instance-life-cycle
+instance-type
+local-hostname
+local-ipv4
+mac
+managed-ssh-keys/
+metrics/
+network/
+placement/
+profile
+public-hostname
+public-ipv4
+public-keys/
+reservation-id
+security-groups
+services/
+
+
+
+Dedicated and Shared tenancy :
+--> Shared tenancy : underlying hardware shared with multiple customers.
+--> Dedicated tenancy:
+	--> Dedicated instance : Dedicated instance provided by aws. No control on backend process.
+	--> Dedicated host : We can apply licenses at underlying physical resources. Also, we can launch multiple instances on a dedicated host.
