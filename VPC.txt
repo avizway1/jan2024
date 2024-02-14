@@ -169,10 +169,7 @@ Task  2: Create a VPC with 4 Subnets. (2 Public SUbnets and 2 Private Subnets)
 
 ---------
 
-Task : create a CustomVPC, Launch a JUMP Server in CustomVPC's PUBLIC Subnet (Use WINDOWS AMI), Now launch another EC2 instance (Amazon Linux 2) in CUSTOM VPC's PRIVATE SUBNET. Connect to Linux instance from Jump Server. 
-
-
-
+Task : create a CustomVPC, Launch a JUMP Server in CustomVPC's PUBLIC Subnet (Use WINDOWS AMI), Now launch another EC2 instance (Amazon Linux 2) in CUSTOM VPC's PRIVATE SUBNET. Connect to Linux instance from Jump Server.
 
 
 ================================================================================
@@ -180,3 +177,88 @@ Task : create a CustomVPC, Launch a JUMP Server in CustomVPC's PUBLIC Subnet (Us
 PublicRoute : We need to associate InternetGateway. 
 PrivateRoute without internet : Don't add NAT.
 PrivateRoute With Intenet : Create NAT Gateway and add NAT Gateway.
+
+VPC NAT Gateway (NO FREE TIER ELIGIBILITY): Is designed to provide Internet to private Subnet resources. NAT always runs in custom VPCs public subnet. We need to generate an EIP (Elastic IP). 
+
+Private subnet ec2 instances want to access something from internet / endpoint hosted over the internet / patching purpose it needs internet. 
+
+--> Make sure your edit PrivateRoute, and add an entry with 0.0.0.0/0 via NAT gateway.
+
+____
+
+
+____________________________________________________________________________________
+
+Enable Logging at VPC : 
+Flow Logs: We can enable flowlogs at 
+--> VPC Level
+--> Subnet Level
+--> Instance Level
+
+We can choose destination as 1. S3 bucket 2. Cloudwatch Logs groups 3. kenisis.
+
+
+--------------------------------
+
+permissions for flowlogs role policy:
+
+--> create a policy and add below permisisons to that policy
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor0",
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogStream",
+                "logs:DescribeLogGroups",
+                "logs:DescribeLogStreams",
+                "logs:CreateLogGroup",
+                "logs:PutLogEvents"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+
+---
+
+Create a role and associate above policy to role you are creating.
+
+Set rust entity as below:
+
+
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "vpc-flow-logs.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+        }
+    ]
+}
+
+_____________________________________________________________________________________
+
+
+Task : Create a NAT gateway and provide internet to PRIVATE SUBNET Instances with the help of NAT gateway. (COST US).. Make sure you delete EIP after your task.
+
+
+Task 2 : Launch a LINUX Instance in PUBLIC SUBNET, Call/use it as JUMP Server, Now Launch another Linux Instance in CUSTOMVPC PRIVATE SUBNET.
+Connect to the Private Linux instance from Public Linux instance.
+
+=====
+
+Task  3 : Create a VPC with 6 Subnets. (2 Public SUbnets and 4 Private Subnets)
+2 Public SUbnets (WEB) (ap-south-1a, ap-south-1b)
+4 Private SUbnets (APP & DB) (ap-south-1a, ap-south-1b)
+
+Optional task:
+Task  : user task 3 settings and draw.io website and design this diagram.
+https://app.diagrams.net/?splash=0&libs=aws4
+
+
