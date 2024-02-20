@@ -90,7 +90,6 @@ If you are using Windows as jump server :
 
 ===========================================
 
-
 Task 1 : Launch a Mysql RDS db instance in CUstomVPCs Private SUbnet. Launch a Windows ec2 instance in custom VPC Public Subnet and Install Mysql workbench then connect to the RDS db instance.   (TRY THIS WITH LINUX ALSO)
 
 
@@ -105,3 +104,49 @@ Task 4 : Launch a POSTGRE SQL RDS db instance in CUstomVPCs Private SUbnet. Laun
 Task 5 : Launch a MS SQL RDS db (Express) instance in CUstomVPCs Private SUbnet. Launch an ec2 instance in custom VPC Public Subnet and Install "SSMS (SQL Server management Studio)" then connect to the RDS db instance.
 
 ================================================================================================
+
+
+
+MultiAZ Deployment : Designed for Failover/FT purpose. : Creates a standby in a different Availability Zone (AZ) to provide data redundancy, eliminate I/O freezes, and minimize latency spikes during system backups.
+
+
+Automated Backup : This feature creates backup copies of our RDS instances automatically.  Based on retention period, we can have backup copies in our aws env to restore. 
+Disable : 0 
+Min : 1 Day
+Max : 35 Days
+
+--> When we are launching db instance, it creates a backup copy automatically, if this feature is enabled. 
+
+7 Days : AWS keeps last 7 days backup copies. 
+
+
+Enhanced Monitoring : 1 Sec
+Basic Monitoring : 5 Min
+
+____
+
+We have "Read Replica" option for scaling purpose. It works with "Master-Slave" mechanism.
+
+Role : Instance   ||   Primary & Replica
+
+Primary : Supports read and write
+Replica : Supports only read operations
+
+_________________
+
+Manual Snapshots : We can create snapshots manually. These won't delete along with rds db instance.  We need to delete manually.
+
+Automated/system snapshots : AWS creates these, We cannot delete these.
+
+
+RDS won't work on In-Place restoration. Restoration happens as a new rds db instance with new endpoint.
+
+
+
+
+
+
+
+
+
+
