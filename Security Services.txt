@@ -1,0 +1,52 @@
+=================================================================================================
+
+
+
+Cloudtrail : Logging service. Enabled by default. it stores only last 90 days logs. Create a trail to s3 to store all logs for unlimited days. 
+
+• Management events provide information about management operations that are
+performed on resources in your AWS account. These are also known as control plane
+operations.
+
+• Data events provide information about the resource operations performed on or in a
+resource. These are also known as data plane operations. Data events are often high-volume activities. Data events can log s3, Dynamodb and Lambda services.
+
+• Insight Events : CloudTrail Insights events capture unusual activity in your AWS account. If you have Insights events enabled, and CloudTrail detects unusual activities.
+
+--> Cloudwatch Agent : We can install cw agent at os level, we can get custom logs of Instance OS. 
+
+** Realtime : We enable trail for all accounts in one AWS Logging account. If any external auditor visits, we can provide access on only logging account.
+In Real env: We create a trail for Management, another trail for data and another for insights.
+
+
+DataDog, Splunk, site24x7
+
+==================================================
+
+Config : (Config works with Cloudtrail) : Record and evaluate configurations of your AWS resources. "NO FREE TIER"
+--> No s3 bucket should have public access. (Non_Compliant resource)
+--> WHen SSL cert is about to expire.
+--> no snapshot should be public.
+
+___________
+
+
+ACM : Amazon Certificate Manager : Generate SSL/TLS certificates. 
+
+Task : Deliver website using ELB.. Generate SSL cert and configure http to https redirection.
+
+https://raw.githubusercontent.com/avizway/redirection/master/httptohttps
+
+
+
+
+Task 1 : Configure cloudtrail management events and verify logs in s3 bucket.
+
+Task 2 : generate SSL certificvate, apply it to Load Balancer and deliver via Route 53. Add rewrite rules.
+
+Task 3 : prepare a VPC diagram for task 2.
+
+
+
+
+
