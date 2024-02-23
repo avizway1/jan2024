@@ -1,7 +1,5 @@
 =================================================================================================
 
-
-
 Cloudtrail : Logging service. Enabled by default. it stores only last 90 days logs. Create a trail to s3 to store all logs for unlimited days. 
 
 • Management events provide information about management operations that are
@@ -47,6 +45,89 @@ Task 2 : generate SSL certificvate, apply it to Load Balancer and deliver via Ro
 Task 3 : prepare a VPC diagram for task 2.
 
 
+================================================================================================
+
+D: 23/02/24
+
+AWS Trusted Advisor : Based on our support plan aws provide suggestions to fix 
+
+Trusted Advisor recommendation help you optimize your AWS infrastructure, improve security and performance, reduce costs, and monitor service quotas.
+
+
+--> Cost Optimization : under utilised resources
+--> Performance : Over utilized resources
+--> Security
+--> Fault Tolerance
+--> Service Limits
+--> Operational excellence
+
+_________________________________________________________________________________
+
+AWS Cloudfront : AWS CDN Service (Content Delivery Network) : Akamai, cloudflair..
+--> CLoudfront have a feature to protect our resources from DDoS attack.
+
+To get the latest data from the Origin / To clear the cache from Edge location, We can perform "Invalidation".
+
+Cache and origin request settings : Use legacy cache settings
+
+Default TTL : 86,400 Sec (1 Day)'
+Max : 365 Days
+
+We must create SSL Cert in N Virginia to map with cloudfront distribution. 
+
+--> Based on endcustomer geo location, we can whitelist/blocklist the data.
+____________
+
+Task : Create an ELB, Try to deliver with Cloudfront distribution.
+
+
+
+
+
+
+
+
+
+================================================================================================
+
+
+WAF : Web Application Firewall : Application ELB, CLoudfront, API Gateway.. : AWS WAF is a web application firewall service that lets you monitor web requests that are forwarded to an Amazon API Gateway API, an Amazon CloudFront distribution, or an Application Load Balancer. You can protect those resources based on conditions that you specify, such as the IP addresses that the requests originate from.
+
+NO FREE TIER ELIGIBILITY
+
+-->  We can create rules in WAF and apply on top of Application Load balancer / Cloudfront / Api gateway.
+____
+
+Protect our resources from DDoS attack : AWS Shield Advanced ($3000/Month)  + ASG + CloudFront
+
+
+AWS Shiled / AWS Shieled advanced : Designed to protect our resources from DDoS Attack. 
+
+Shield Enabled for all the aws account. 
+Shield advanced cost us 3000$/Month.. AWS Team monitor the DDoS attack/traffic.
+
+=================================================================================================
+
+==============================================================================
+
+
+Migrate Server From One region to another region: DATA TRANSFER COST APPLY:  
+https://www.youtube.com/watch?v=fIEwoFaXExQ
+
+--> Launch an ec2 instance in Mumbai region, configure web server..  Migrate this instance to "mumbai" using MGN Service.
+
+
+===========================
+
+https://www.youtube.com/playlist?list=PLneBjIzDLECnvHUiqAe5DYHcnXSOTWeXO
+
+===========================
+
+DMS : https://www.youtube.com/watch?v=SXuOjfKpIrs
+GCP to AWS / Anywhere to AWS : https://www.youtube.com/watch?v=8xf1RpPdcHs
+azure to aws migration : https://www.youtube.com/watch?v=bdaHMRqCBkg
+
+SMS with VMWARE : https://www.youtube.com/watch?v=Vx9lRRY-shg
 
 
 
