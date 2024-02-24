@@ -1,0 +1,45 @@
+
+AWS Lambda : Serverless architecture. 
+--> Lambda performance depends on memory configurations. 
+
+--> Python
+--> .net core
+--> java
+--> go
+--> ruby
+--> Node.js
+
+Lambda-canary : It open the required website and look for the string we have given.
+
+google.com --> Google
+
+--> Incresing the memory and timeout values.
+--> Changing the required permissions on lambda associated roles. 
+--> Can we run lambda within a VPC..?? YES
+	--> FOr Lambda role Make sure you associate "AWSLambdaVPCAccessExecutionRole"
+
+
+-------------
+
+Task : Am sharing some lambda functions... Deploy the lambda functions and test it. 
+(1. Volume Status check
+2. Volume encrytption check
+3. Instance Stop
+4. Instance Start)
+
+Task : Create an s3 bucket, When we upload any object to s3 bucket, It should trigger "Stop-Instance" lambda function and instance need to stop.
+
+Task  : What ever the file names starting with "A/a" should move to another s3 bucket.
+
+Task  : What ever the file names ending with ".bkp" should move to another s3 bucket.
+
+Task : Create a lambda function to perform telnet test.  get output as "Telnet success" or "telnet failed".
+
+telnet google.com 443
+
+Task : Get the list of IAM users whoever not logged in to aws account in last 1 hr.
+
+Task : 
+** Get the list of IAM users accesskeyid and secretaccess keys not used in last 90 days. Send the list of users in .csv format file and write it to an s3 bucket.
+
+=====================================

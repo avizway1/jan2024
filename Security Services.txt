@@ -82,14 +82,9 @@ Task : Create an ELB, Try to deliver with Cloudfront distribution.
 
 
 
-
-
-
-
-
-
 ================================================================================================
 
+D: 24/02
 
 WAF : Web Application Firewall : Application ELB, CLoudfront, API Gateway.. : AWS WAF is a web application firewall service that lets you monitor web requests that are forwarded to an Amazon API Gateway API, an Amazon CloudFront distribution, or an Application Load Balancer. You can protect those resources based on conditions that you specify, such as the IP addresses that the requests originate from.
 
@@ -107,8 +102,6 @@ Shield Enabled for all the aws account.
 Shield advanced cost us 3000$/Month.. AWS Team monitor the DDoS attack/traffic.
 
 =================================================================================================
-
-==============================================================================
 
 
 Migrate Server From One region to another region: DATA TRANSFER COST APPLY:  
