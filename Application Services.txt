@@ -42,4 +42,76 @@ Task : Get the list of IAM users whoever not logged in to aws account in last 1 
 Task : 
 ** Get the list of IAM users accesskeyid and secretaccess keys not used in last 90 days. Send the list of users in .csv format file and write it to an s3 bucket.
 
-=====================================
+======================================================================================================
+
+D: 26/02/24
+
+How many Account you manage : 
+For Every CLient : Sandbox/Training, Dev, SIT/SQA, UAT and PRD ==> 5 Accounts
+Central logging account and Management Account
+
+Interview : Atleast 7 Accounts..
+
+AWS Organisations along with SSO: 
+
+Management account : From single aws account, we can manage multiple accounts. Centralized billing option for multiple aws accounts. 
+
+SCP : Service Control Policy : We can apply policy at Org level / OU level to manage permissions on AWS accounts.
+
+identity source : SSO / Active Directory
+Permission Sets : set of permissions in aws.
+you can see/find only org joined aws accounts in SSO.
+
+
+AD : https://www.youtube.com/watch?v=RDlBoAHVmZs
+Ad Connector : https://www.youtube.com/watch?v=Ca259gg6SoM
+Linux to AD : https://www.youtube.com/watch?v=LWi9-XL2vWQ
+
+Switch role : https://www.youtube.com/watch?v=sZiiB4yF0VY
+
+
+================================================================================
+
+_________________________________________________________
+
+
+https://www.youtube.com/playlist?list=PLneBjIzDLECnvHUiqAe5DYHcnXSOTWeXO
+
+Codecommit
+CodeDeploy
+Codepipeline
+codebuild
+
+"S3/codecommit/git" --> Deploy to "ElasticBeanstalk"
+
+________________
+
+Create an IAM user, Make sure he has "Adminaccess / Codecommit full access", Generate "programatic keys (Accesskeyid&secretaccesskey)" and configure it in your local laptop.
+
+aws configure
+accesskey : 
+secretaccesskey : 
+region : ap-south-1
+output :  
+
+You need to have some softwares. 
+1. Install Python
+2. Install git
+3. install grc : pip install git-remote-codecommit
+
+
+git add .
+git status
+git commit -m "commit msg"
+git push
+git pull
+git clone
+
+Task : With shared code, perform CICD deployment.
+
+GIT : 
+https://www.youtube.com/watch?v=rtI26X6FJX0&list=PLneBjIzDLECkdgoinrTO7D519zgPEmcte
+
+
+
+
