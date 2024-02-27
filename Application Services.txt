@@ -72,10 +72,37 @@ Switch role : https://www.youtube.com/watch?v=sZiiB4yF0VY
 
 ================================================================================
 
-_________________________________________________________
+AWS Cloudformation : IaC Infrastructure as Code : JSON/YAML : 
+--> it's free. 
+
+Prepare a cloudformation stack. This stack are reusable.
+--> CLoudformation created resources will delete automatically when we delete the cloudformation stack.
+
+rollback on failure : yes
+
+2 ec2 instance, 3 s3 bucket, 1 rds instance
+
+AWS Console Recorder : Browser plugin
+Former2 : former2.com
+
+https://aws.amazon.com/blogs/machine-learning/plant-leaf-disease-detection-with-amazon-rekognition-custom-labels/
 
 
-https://www.youtube.com/playlist?list=PLneBjIzDLECnvHUiqAe5DYHcnXSOTWeXO
+Cloudformation Playlist: https://www.youtube.com/playlist?list=PLneBjIzDLECnvHUiqAe5DYHcnXSOTWeXO
+
+==============================================================================
+
+1. Launch an ec2 instance and use Former2 browser extension and generate the CF script and deploy it. 
+
+2. Create an s3 bucket and configure lifecycle rule. Use Former2 to generate the cft and deploy it by changing the bucket name and test it.
+
+3. Launch an ec2 instance using cloudformation template. While launching use userdata to make it webserver also, open post 80 and 22 open for everyone. Deploy it and test it.
+
+Do the above tasks with the help of chatgpt, if required. 
+
+==============================================================================
+
+
 
 Codecommit
 CodeDeploy
