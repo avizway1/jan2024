@@ -102,7 +102,7 @@ Do the above tasks with the help of chatgpt, if required.
 
 ==============================================================================
 
-
+D: 28/02/24
 
 Codecommit
 CodeDeploy
@@ -134,11 +134,42 @@ git push
 git pull
 git clone
 
-Task : With shared code, perform CICD deployment.
+Task : get familier with above commands.
+
 
 GIT : 
 https://www.youtube.com/watch?v=rtI26X6FJX0&list=PLneBjIzDLECkdgoinrTO7D519zgPEmcte
 
 
+
+================================================================================
+
+SNS : Simple Notifications Service : 
+--> We can create a Topic, We can add subscribers (email, website endpoint, sqs, mobile). 
+--> Subscriber need to confirm the subscription. 
+--> Push based messaging service. 
+
+SNS also supports Push notifications service. Works based on mobile operating systems. 
+__
+
+SQS : Simple Queue service : pull based messeging service. 
+Ex: AutoScaling group works with sqs service. 
+
+--> Standard
+At-least-once delivery, message ordering isn't preserved
+At-least once delivery
+Best-effort ordering
+
+--> FIFO (Name should end with .fifo) 
+First-in-first-out delivery, message ordering is preserved
+First-in-first-out delivery
+Exactly-once processin
+
+Maximum message size : 256 kb  (AWS cost us based on chunks)
+1 chunk = 64 kb..   
+
+1 million req under free tier eligibility.
+
+_
 
 
