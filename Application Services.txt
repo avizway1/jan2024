@@ -141,7 +141,6 @@ GIT :
 https://www.youtube.com/watch?v=rtI26X6FJX0&list=PLneBjIzDLECkdgoinrTO7D519zgPEmcte
 
 
-
 ================================================================================
 
 SNS : Simple Notifications Service : 
@@ -150,6 +149,10 @@ SNS : Simple Notifications Service :
 --> Push based messaging service. 
 
 SNS also supports Push notifications service. Works based on mobile operating systems. 
+
+
+==> Project Video: https://youtu.be/Fk4LIFULlYw
+
 __
 
 SQS : Simple Queue service : pull based messeging service. 
@@ -171,5 +174,7 @@ Maximum message size : 256 kb  (AWS cost us based on chunks)
 1 million req under free tier eligibility.
 
 _
+
+
 
 
