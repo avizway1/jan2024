@@ -151,7 +151,19 @@ SNS : Simple Notifications Service :
 SNS also supports Push notifications service. Works based on mobile operating systems. 
 
 
+
+Task 1 : 
 ==> Project Video: https://youtu.be/Fk4LIFULlYw
+
+Task 2 : Create CICD pipeline to deliver php webpagfe via beanstalk.
+
+
+
+
+
+
+
+
 
 __
 
