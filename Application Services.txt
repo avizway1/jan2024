@@ -150,43 +150,22 @@ SNS : Simple Notifications Service :
 
 SNS also supports Push notifications service. Works based on mobile operating systems. 
 
-
-
 Task 1 : 
 ==> Project Video: https://youtu.be/Fk4LIFULlYw
 
 Task 2 : Create CICD pipeline to deliver php webpagfe via beanstalk.
 
+=============================================================================================
+
+https://www.youtube.com/watch?v=xl-29WXdQXg&list=PLneBjIzDLECnvHUiqAe5DYHcnXSOTWeXO
+
+https://github.com/avizway1/aws-projects
 
 
 
+=======================
+Please complete abelow projects
+project 2 : https://www.youtube.com/watch?v=YEIuuVKIy8U
+Project 3 : https://www.youtube.com/watch?v=1IJJmWKzeXQ
 
-
-
-
-
-__
-
-SQS : Simple Queue service : pull based messeging service. 
-Ex: AutoScaling group works with sqs service. 
-
---> Standard
-At-least-once delivery, message ordering isn't preserved
-At-least once delivery
-Best-effort ordering
-
---> FIFO (Name should end with .fifo) 
-First-in-first-out delivery, message ordering is preserved
-First-in-first-out delivery
-Exactly-once processin
-
-Maximum message size : 256 kb  (AWS cost us based on chunks)
-1 chunk = 64 kb..   
-
-1 million req under free tier eligibility.
-
-_
-
-
-
-
+=======================
