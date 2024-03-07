@@ -204,8 +204,7 @@ https://www.youtube.com/containersfromthecouch
 https://kodekloud.com/courses/docker-for-the-absolute-beginner/
 https://www.youtube.com/watch?v=fqMOX6JJhGo
 Terraform : https://www.youtube.com/watch?v=iRaai1IBlB0
-Ansible: Refer youtube chnanel.
-
+Ansible: Refer youtube channel.
 
 
 Task : Practice End to end ( 
@@ -218,5 +217,44 @@ Task : Practice End to end (
 7. Run as Service along with Load Balancer
 )
 ______________________________________________________________________________________
- 
 
+D: 06/03/24
+
+SQS : Simple Queue service : pull based messeging service. 
+Ex: AutoScaling group works with sqs service. 
+
+--> Standard
+At-least-once delivery, message ordering isn't preserved
+At-least once delivery
+Best-effort ordering
+
+--> FIFO (Name should end with .fifo) 
+First-in-first-out delivery, message ordering is preserved
+First-in-first-out delivery
+Exactly-once processin
+
+Maximum message size : 256 kb  (AWS cost us based on chunks)
+1 chunk = 64 kb..   
+
+1 million req under free tier eligibility.
+
+__________
+
+SES : Simple Email Service : If we want to send messeges on behalf of another email / domain name, We can use SES service. 
+
+--> For bulk email sending, we need to use another service "Amazon pinpoint".
+https://www.youtube.com/watch?v=g_NTrw3UU0w
+
+mailchimp
+easy sendy pro
+
+_________________________________________________________
+
+AWS Budget
+AWS Cost Explorer 
+
+Storage Gateway : https://www.youtube.com/watch?v=wmcBSHpoHhs	(good to know - certification)
+CW Custom Metrics : https://www.youtube.com/watch?v=Fe2mEkWiNSA   (good to know)
+Gloabl Accelerator : https://www.youtube.com/watch?v=ELEW3R5vgCA. (optional / ignore)
+
+GIT : https://www.youtube.com/watch?v=rtI26X6FJX0&list=PLneBjIzDLECkdgoinrTO7D519zgPEmcte
