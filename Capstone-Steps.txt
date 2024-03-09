@@ -1,0 +1,20 @@
+Step 1 : Create a VPC (with 2 public , 2 APP Private, 2 DB private)
+Step 2 : Create a NAT gateway
+Step 3 : Create a RDS Subnet Group with 2 FB Private SUbnets.
+Step 4 : Create an RDS instance in Custom VPC DB private SUbnet.
+Step 5 : Create CloudFront Distribution and Deliver video files via edge locations.
+Step 6 : Launch an ec2 instance in custom VPC Public SUbnet (Windows - JUMP Server)
+Step 7 : launch an ec2 instance in CustomVPC Private Subnet.. 
+Step 8 : Create an EFS and Make it ready to mount for Private SUbnet Instances.
+
+(COnnect to Ptivate SUbvnet ec2 instance launched as part of step 7, Do the remaining configurations)
+
+before mounting, make sure your VPC is enabled with "DNS hostnames"
+
+test the functionality from Jump server, everything should work as expected.
+
+Step 9 : Create a GoldenAMI of Step 7 instance.
+Step 10 : generate an SSL certificate from ACM.
+Step 11 : Create an Load Balancer and Map SSL cert
+Step 12 : create an ASG.
+Step 13 : Map ELB to Route53 HostedZone.
